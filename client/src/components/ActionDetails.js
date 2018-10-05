@@ -10,6 +10,24 @@ const ActionDiv = styled.div`
 	margin: 5px;
 	padding: 5px;
 	width: 50%;
+
+	.buttons {
+		button {
+			border-radius: 5px;
+			padding: 5px 10px;
+		}
+
+		.edit-btn {
+			background: purple;
+			color: white;
+
+			&:hover {
+				background: black;
+				color: pink;
+				cursor: pointer;
+			}
+		}
+	}
 `;
 
 export default class ActionDetails extends Component {
@@ -33,6 +51,7 @@ export default class ActionDetails extends Component {
 
 	render() {
 		const { id, project_id, description, notes, completed } = this.state.action;
+		const { goToEditAction } = this.props;
 		return(
 			<ActionDiv>
 				<p>ID: { id }</p>
@@ -40,6 +59,10 @@ export default class ActionDetails extends Component {
 				<p>Description: { description }</p>
 				<p>Notes: { notes }</p>
 				<p>Completed: { completed ? 'true' : 'false' }</p>
+
+				<div className = 'buttons'>
+					<button className = 'edit-btn' onClick = { () => goToEditAction(id) }>Edit Action</button>
+				</div>
 			</ActionDiv>
 		);
 	}
