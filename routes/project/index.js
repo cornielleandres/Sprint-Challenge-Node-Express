@@ -8,11 +8,8 @@ router.get('/', (req, res) => {
 	projectModel
 		.get()
 		.then(projects => {
-			if (projects.length) {
-				return res.status(200).json(projects);
-			} else {
-				return res.status(404).json('There are no projects to retrieve.');
-			}
+			if (projects.length) return res.status(200).json(projects);
+			else return res.status(404).json('There are no projects to retrieve.');
 		})
 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
 });
@@ -21,7 +18,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 	const { id } = req.params;
 	projectModel
-		.get(parseInt(id))
+		.get(id)
 		.then(project => res.status(200).json(project))
 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }. It is likely the project with ID ${ id } does not exist.`));
 });
@@ -32,11 +29,8 @@ router.get('/:id/actions', (req, res) => {
 	projectModel
 		.getProjectActions(id)
 		.then(actions => {
-			if (actions.length) {
-				return res.status(200).json(actions);
-			} else {
-				return res.status(404).json(`Either project with ID ${ id } does not exist or it does not have any actions.`);
-			}
+			if (actions.length) res.status(200).json(actions);
+			else return res.status(404).json(`Either project with ID ${ id } does not exist or it does not have any actions.`);
 		})
 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
 });
@@ -59,13 +53,22 @@ router.put('/:id', (req, res) => {
 	projectModel
 		.update(id, updatedProject)
 		.then(project => {
-			if (project) {
-				return res.status(200).json(project);
-			} else {
-				return res.status(404).json(`Project with ID ${ id } does not exist.`);
-			}
+			if (project) return res.status(200).json(project);
+			else return res.status(404).json(`Project with ID ${ id } does not exist.`);
 		})
 		.catch(err => res.status(500).json(`Server could not update project: ${ err }`));
+});
+
+// delete a project with a specific project ID
+router.delete('/:id', (req, res) => {
+	const { id } = req.params;
+	projectModel
+		.remove(id)
+		.then(del => {
+			if (del) return res.status(200).json(`Project with ID ${ id } successfully deleted.`);
+			else return res.status(404).json(`Project with ID ${ id } does not exist.`);
+		})
+		.catch(err => res.status(500).json(`Server could not delete project: ${ err }`));
 });
 
 module.exports = router;
