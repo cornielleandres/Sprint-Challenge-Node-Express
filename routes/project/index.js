@@ -19,14 +19,23 @@ router.get('/', (req, res) => {
 
 // get project with specific project ID
 router.get('/:id', (req, res) => {
-	const { id } = req.params.id;
+	const { id } = req.params;
 	projectModel
 		.get(parseInt(id))
-		.then(project => {
-			if (project.length === 1) {
-				return res.status(200).json(project);
+		.then(project => res.status(200).json(project))
+		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
+});
+
+// get all actions for project with specific project ID
+router.get('/:id/actions', (req, res) => {
+	const { id } = req.params;
+	projectModel
+		.getProjectActions(id)
+		.then(actions => {
+			if (actions.length) {
+				return res.status(200).json(actions);
 			} else {
-				return res.status(404).json(`Project with ID ${ id } does not exist.`);
+				return res.status(404).json(`Either project with ID ${ id } does not exist or it does not have any actions.`);
 			}
 		})
 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
