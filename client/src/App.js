@@ -69,6 +69,15 @@ class App extends Component {
 		this.props.history.push(`/projects/${ id }/edit`);
 	};
 
+	goToDeleteProject = (e, id) => {
+		e.stopPropagation();
+		const URL = 'http://localhost:5000';
+		axios
+			.delete(`${ URL }/api/projects/${ id }`)
+			.then(del => this.updateProjects())
+			.catch(err => console.log(err));
+	};
+
 	updateProjects = () => {
 		const URL = 'http://localhost:5000';
 		axios
@@ -90,7 +99,7 @@ class App extends Component {
 					</div>
 				</header>
 
-				<Route exact path = '/' render = { () => <ProjectsList goToEditProject = { this.goToEditProject } goToProject = { this.goToProject } projects = { projects } /> } />
+				<Route exact path = '/' render = { () => <ProjectsList goToDeleteProject = { this.goToDeleteProject } goToEditProject = { this.goToEditProject } goToProject = { this.goToProject } projects = { projects } /> } />
 
 				<Route exact path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } /> } />
 

@@ -15,25 +15,44 @@ const ProjectDiv = styled.div`
 		cursor: pointer;
 	}
 
-	button {
-		padding: 5px 10px;
-		border-radius: 5px;
-		background: blue;
-		color: white;
+	.buttons {
+		button {
+			padding: 5px 10px;
+			border-radius: 5px;
+			color: white;
+	
+			&:hover {
+				background: black;
+				cursor: pointer;
+			}
+		}
 
-		&:hover {
-			background: black;
-			color: cyan;
-			cursor: pointer;
+		.edit-btn {
+			background: blue;
+
+			&:hover {
+				color: cyan;
+			}
+		}
+
+		.delete-btn {
+			background: red;
+
+			&:hover {
+				color: red;
+			}
 		}
 	}
 `;
 
 const Project = props => {
-	const { project, goToProject, goToEditProject } = props;
+	const { project, goToProject, goToEditProject, goToDeleteProject } = props;
 	return(
 		<ProjectDiv onClick = { () => goToProject(project.id) }>
-			<button onClick = { e => goToEditProject(e, project.id) }>Edit Project</button>
+			<div className = 'buttons'>
+				<button className = 'edit-btn' onClick = { e => goToEditProject(e, project.id) }>Edit Project</button>
+				<button className = 'delete-btn' onClick = { e => goToDeleteProject(e, project.id) }>Delete Project</button>
+			</div>
 
 			<p>Project ID: { project.id }</p>
 			<p>Name: { project.name }</p>
