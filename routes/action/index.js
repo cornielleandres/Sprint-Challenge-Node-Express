@@ -1,5 +1,6 @@
 const express = require('express');
 const actionModel = require('../../data/helpers/actionModel.js');
+const projectModel = require('../../data/helpers/projectModel.js');
 
 const router = express.Router();
 
@@ -23,27 +24,15 @@ router.get('/:id', (req, res) => {
 		.catch(err => res.status(500).json(`Server could not retrieve action information: ${ err }. It is likely the action with ID ${ id } does not exist.`));
 });
 
-// // get all actions for project with specific project ID
-// router.get('/:id/actions', (req, res) => {
-// 	const { id } = req.params;
-// 	projectModel
-// 		.getProjectActions(id)
-// 		.then(actions => {
-// 			if (actions.length) res.status(200).json(actions);
-// 			else return res.status(404).json(`Either project with ID ${ id } does not exist or it does not have any actions.`);
-// 		})
-// 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
-// });
-
-// // post new project and return that project
-// router.post('/', (req, res) => {
-// 	const { name, description } = req.body;
-// 	const newProject = { name, description };
-// 	projectModel
-// 		.insert(newProject)
-// 		.then(project => res.status(201).json(project))
-// 		.catch(err => res.status(500).json(`Server could not post new project: ${ err }`));
-// });
+// post new action and return that action
+router.post('/', (req, res) => {
+	const { project_id, description, notes } = req.body;
+	const newAction = { project_id, description, notes };
+	actionModel
+		.insert(newAction)
+		.then(action => res.status(201).json(action))
+		.catch(err => res.status(500).json(`Server could not post new action: ${ err }`));
+});
 
 // // edit project with specific project ID and return that updated project
 // router.put('/:id', (req, res) => {
