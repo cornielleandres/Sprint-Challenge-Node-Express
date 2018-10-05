@@ -63,7 +63,7 @@ class App extends Component {
 		this.props.history.push(`/projects/${ id }`);
 	};
 
-	projectCreated = () => {
+	updateProjects = () => {
 		const URL = 'http://localhost:5000';
 		axios
 			.get(`${ URL }/api/projects`)
@@ -88,7 +88,7 @@ class App extends Component {
 
 				<Route path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } /> } />
 
-				<Route path = '/create' render = { () => <CreateProject projectCreated = { this.projectCreated } /> } />
+				<Route path = '/create' render = { () => <CreateProject updateProjects = { this.updateProjects } /> } />
 			</AppDiv>
 		);
 	}

@@ -52,7 +52,7 @@ export default class CreateProject extends Component {
 		const URL = 'http://localhost:5000';
 		axios
 			.post(`${ URL }/api/projects`, newProject)
-			.then(project => this.props.projectCreated())
+			.then(project => this.props.updateProjects())
 			.catch(err => console.log(err));
 	};
 
