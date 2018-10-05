@@ -15,10 +15,10 @@ const ProjectsListDiv = styled.div`
 `;
 
 const ProjectsList = props => {
-	const { projects } = props;
+	const { projects, goToProject } = props;
 	return(
 		<ProjectsListDiv>
-			{ projects.map(project => <Project project = { project } />) }
+			{ projects.map((project, i) => <Project key = { i } goToProject = { goToProject } project = { project } />) }
 		</ProjectsListDiv>
 	);
 };
