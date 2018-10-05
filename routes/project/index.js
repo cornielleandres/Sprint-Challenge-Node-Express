@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
 	projectModel
 		.get(parseInt(id))
 		.then(project => res.status(200).json(project))
-		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
+		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }. It is likely the project with ID ${ id } does not exist.`));
 });
 
 // get all actions for project with specific project ID
@@ -39,6 +39,16 @@ router.get('/:id/actions', (req, res) => {
 			}
 		})
 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }`));
+});
+
+// post new project and return that project
+router.post('/', (req, res) => {
+	const { name, description } = req.body;
+	const newProject = { name, description };
+	projectModel
+		.insert(newProject)
+		.then(project => res.status(201).json(project))
+		.catch(err => res.status(500).json(`Server could not post new project: ${ err }`));
 });
 
 module.exports = router;
