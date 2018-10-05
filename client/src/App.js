@@ -8,6 +8,7 @@ import ProjectDetails from './components/ProjectDetails';
 import CreateProject from './components/CreateProject';
 import EditProject from './components/EditProject';
 import ActionDetails from './components/ActionDetails';
+import CreateAction from './components/CreateAction';
 
 // Styles
 import styled from 'styled-components';
@@ -83,6 +84,10 @@ class App extends Component {
 		this.props.history.push(`/actions/${ id }`);
 	};
 
+	goToCreateAction = projectId => {
+		this.props.history.push(`/actions/create/${ projectId }`);
+	}
+
 	updateProjects = () => {
 		const URL = 'http://localhost:5000';
 		axios
@@ -106,13 +111,15 @@ class App extends Component {
 
 				<Route exact path = '/' render = { () => <ProjectsList goToDeleteProject = { this.goToDeleteProject } goToEditProject = { this.goToEditProject } goToProject = { this.goToProject } projects = { projects } /> } />
 
-				<Route exact path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } goToAction = { this.goToAction } /> } />
+				<Route exact path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } goToCreateAction = { this.goToCreateAction } goToAction = { this.goToAction } /> } />
 
 				<Route path = '/create' render = { () => <CreateProject updateProjects = { this.updateProjects } /> } />
 
 				<Route path = '/projects/:id/edit' render = { props => <EditProject id = { props.match.params.id } updateProjects = { this.updateProjects } /> } />
 
-				<Route path = '/actions/:id' render = { props => <ActionDetails id = { props.match.params.id } /> } />
+				<Route exact path = '/actions/:id' render = { props => <ActionDetails id = { props.match.params.id } /> } />
+
+				<Route path = '/actions/create/:projectId' render = { props => <CreateAction projectId = { props.match.params.projectId } updateProjects = { this.updateProjects } /> } />
 			</AppDiv>
 		);
 	}

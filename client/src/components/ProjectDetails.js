@@ -13,6 +13,19 @@ const ProjectDetailsDiv = styled.div`
 	margin: 5px;
 	padding: 5px;
 	width: 50%;
+
+	.add-action-btn {
+		border-radius: 5px;
+		padding: 5px 10px;
+		background: purple;
+		color: white;
+
+		&:hover {
+			background: black;
+			color: pink;
+			cursor: pointer;
+		}
+	}
 `;
 
 export default class ProjectDetails extends Component {
@@ -36,7 +49,7 @@ export default class ProjectDetails extends Component {
 
 	render() {
 		const { project } = this.state;
-		const { goToAction } = this.props;
+		const { goToAction, goToCreateAction } = this.props;
 		return(
 			<ProjectDetailsDiv>
 				<p>ID: { project.id }</p>
@@ -50,6 +63,8 @@ export default class ProjectDetails extends Component {
 				<div className = 'actions'>
 					{ project.actions.map((action, i) => <Action key = { i } goToAction = { goToAction } action = { action } />) }
 				</div>
+
+				<button className = 'add-action-btn' onClick = { () => goToCreateAction(project.id) }>Add New Action</button>
 			</ProjectDetailsDiv>
 		);
 	}
