@@ -14,14 +14,14 @@ router.get('/', (req, res) => {
 		.catch(err => res.status(500).json(`Server could not retrieve action information: ${ err }`));
 });
 
-// // get project with specific project ID
-// router.get('/:id', (req, res) => {
-// 	const { id } = req.params;
-// 	projectModel
-// 		.get(id)
-// 		.then(project => res.status(200).json(project))
-// 		.catch(err => res.status(500).json(`Server could not retrieve project information: ${ err }. It is likely the project with ID ${ id } does not exist.`));
-// });
+// get action with specific action ID
+router.get('/:id', (req, res) => {
+	const { id } = req.params;
+	actionModel
+		.get(id)
+		.then(action => res.status(200).json(action))
+		.catch(err => res.status(500).json(`Server could not retrieve action information: ${ err }. It is likely the action with ID ${ id } does not exist.`));
+});
 
 // // get all actions for project with specific project ID
 // router.get('/:id/actions', (req, res) => {
