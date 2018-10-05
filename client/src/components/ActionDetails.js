@@ -15,16 +15,27 @@ const ActionDiv = styled.div`
 		button {
 			border-radius: 5px;
 			padding: 5px 10px;
-		}
-
-		.edit-btn {
-			background: purple;
 			color: white;
 
 			&:hover {
 				background: black;
-				color: pink;
 				cursor: pointer;
+			}
+		}
+
+		.edit-btn {
+			background: purple;
+
+			&:hover {
+				color: pink;
+			}
+		}
+
+		.delete-btn {
+			background: red;
+
+			&:hover {
+				color: red;
 			}
 		}
 	}
@@ -51,7 +62,7 @@ export default class ActionDetails extends Component {
 
 	render() {
 		const { id, project_id, description, notes, completed } = this.state.action;
-		const { goToEditAction } = this.props;
+		const { goToEditAction, goToDeleteAction } = this.props;
 		return(
 			<ActionDiv>
 				<p>ID: { id }</p>
@@ -62,6 +73,7 @@ export default class ActionDetails extends Component {
 
 				<div className = 'buttons'>
 					<button className = 'edit-btn' onClick = { () => goToEditAction(id) }>Edit Action</button>
+					<button className = 'delete-btn' onClick = { () => goToDeleteAction(id) }>Delete Action</button>
 				</div>
 			</ActionDiv>
 		);

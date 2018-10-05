@@ -93,6 +93,14 @@ class App extends Component {
 		this.props.history.push(`/actions/edit/${ actionId }`);
 	};
 
+	goToDeleteAction = actionId => {
+		const URL = 'http://localhost:5000';
+		axios
+			.delete(`${ URL }/api/actions/${ actionId }`)
+			.then(del => this.updateProjects())
+			.catch(err => console.log(err));
+	};
+
 	updateProjects = () => {
 		const URL = 'http://localhost:5000';
 		axios
@@ -122,7 +130,7 @@ class App extends Component {
 
 				<Route path = '/projects/:id/edit' render = { props => <EditProject id = { props.match.params.id } updateProjects = { this.updateProjects } /> } />
 
-				<Route exact path = '/actions/:id' render = { props => <ActionDetails id = { props.match.params.id } goToEditAction = { this.goToEditAction } /> } />
+				<Route exact path = '/actions/:id' render = { props => <ActionDetails id = { props.match.params.id } goToEditAction = { this.goToEditAction } goToDeleteAction = { this.goToDeleteAction } /> } />
 
 				<Route path = '/actions/create/:projectId' render = { props => <CreateAction projectId = { props.match.params.projectId } updateProjects = { this.updateProjects } /> } />
 
