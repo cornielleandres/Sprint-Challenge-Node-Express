@@ -14,12 +14,27 @@ const ProjectDiv = styled.div`
 		background: #ddd;
 		cursor: pointer;
 	}
+
+	button {
+		padding: 5px 10px;
+		border-radius: 5px;
+		background: blue;
+		color: white;
+
+		&:hover {
+			background: black;
+			color: cyan;
+			cursor: pointer;
+		}
+	}
 `;
 
 const Project = props => {
-	const { project, goToProject } = props;
+	const { project, goToProject, goToEditProject } = props;
 	return(
 		<ProjectDiv onClick = { () => goToProject(project.id) }>
+			<button onClick = { e => goToEditProject(e, project.id) }>Edit Project</button>
+
 			<p>Project ID: { project.id }</p>
 			<p>Name: { project.name }</p>
 			<p>Description: { project.description }</p>

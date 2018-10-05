@@ -6,6 +6,7 @@ import axios from 'axios';
 import ProjectsList from './components/ProjectsList';
 import ProjectDetails from './components/ProjectDetails';
 import CreateProject from './components/CreateProject';
+import EditProject from './components/EditProject';
 
 // Styles
 import styled from 'styled-components';
@@ -63,6 +64,11 @@ class App extends Component {
 		this.props.history.push(`/projects/${ id }`);
 	};
 
+	goToEditProject = (e, id) => {
+		e.stopPropagation();
+		this.props.history.push(`/projects/${ id }/edit`);
+	};
+
 	updateProjects = () => {
 		const URL = 'http://localhost:5000';
 		axios
@@ -84,11 +90,13 @@ class App extends Component {
 					</div>
 				</header>
 
-				<Route exact path = '/' render = { () => <ProjectsList goToProject = { this.goToProject } projects = { projects } /> } />
+				<Route exact path = '/' render = { () => <ProjectsList goToEditProject = { this.goToEditProject } goToProject = { this.goToProject } projects = { projects } /> } />
 
-				<Route path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } /> } />
+				<Route exact path = '/projects/:id' render = { props => <ProjectDetails id = { props.match.params.id } /> } />
 
 				<Route path = '/create' render = { () => <CreateProject updateProjects = { this.updateProjects } /> } />
+
+				<Route path = '/projects/:id/edit' render = { props => <EditProject id = { props.match.params.id } updateProjects = { this.updateProjects } /> } />
 			</AppDiv>
 		);
 	}
