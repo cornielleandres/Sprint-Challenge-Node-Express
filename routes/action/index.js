@@ -34,19 +34,19 @@ router.post('/', (req, res) => {
 		.catch(err => res.status(500).json(`Server could not post new action: ${ err }`));
 });
 
-// // edit project with specific project ID and return that updated project
-// router.put('/:id', (req, res) => {
-// 	const { id } = req.params;
-// 	const { name, description, completed } = req.body;
-// 	const updatedProject = { name, description, completed };
-// 	projectModel
-// 		.update(id, updatedProject)
-// 		.then(project => {
-// 			if (project) return res.status(200).json(project);
-// 			else return res.status(404).json(`Project with ID ${ id } does not exist.`);
-// 		})
-// 		.catch(err => res.status(500).json(`Server could not update project: ${ err }`));
-// });
+// edit action with specific action ID and return that updated action
+router.put('/:id', (req, res) => {
+	const { id } = req.params;
+	const { project_id, description, notes, completed } = req.body;
+	const updatedAction = { project_id, description, notes, completed };
+	actionModel
+		.update(id, updatedAction)
+		.then(action => {
+			if (action) return res.status(200).json(action);
+			else return res.status(404).json(`Action with ID ${ id } does not exist.`);
+		})
+		.catch(err => res.status(500).json(`Server could not update action: ${ err }`));
+});
 
 // // delete a project with a specific project ID
 // router.delete('/:id', (req, res) => {
