@@ -8,12 +8,17 @@ const ActionDiv = styled.div`
 	border-radius: 5px;
 	margin: 5px;
 	padding: 5px;
+
+	&:hover {
+		background: #ddd;
+		cursor: pointer;
+	}
 `;
 
 const Action = props => {
-	const { action } = props;
+	const { action, goToAction } = props;
 	return(
-		<ActionDiv>
+		<ActionDiv onClick = { () => goToAction(action.id) }>
 			<p>Action ID: { action.id }</p>
 			<p>Description: { action.description }</p>
 			<p>Notes: { action.notes }</p>

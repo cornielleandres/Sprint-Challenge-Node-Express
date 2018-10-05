@@ -36,6 +36,7 @@ export default class ProjectDetails extends Component {
 
 	render() {
 		const { project } = this.state;
+		const { goToAction } = this.props;
 		return(
 			<ProjectDetailsDiv>
 				<p>ID: { project.id }</p>
@@ -47,7 +48,7 @@ export default class ProjectDetails extends Component {
 
 				<p>Actions:</p>
 				<div className = 'actions'>
-					{ project.actions.map((action, i) => <Action key = { i } action = { action } />) }
+					{ project.actions.map((action, i) => <Action key = { i } goToAction = { goToAction } action = { action } />) }
 				</div>
 			</ProjectDetailsDiv>
 		);
