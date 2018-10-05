@@ -46,3 +46,33 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* CSS */
+body {
+	background-color: #aaa;
+}
+
+
+/* Animations */
+@keyframes fade-in-anim {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+@keyframes grow-anim {
+	0% {transform: scale(0)}
+	50% {transform: scale(1.1)}
+	100% {transform: scale(1)}
+}
+
+.fade-in-anim {
+	animation-name: fade-in-anim;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+.grow-anim {
+	animation-name: grow-anim;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}

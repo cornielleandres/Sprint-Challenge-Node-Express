@@ -60,7 +60,7 @@ export default class CreateAction extends Component {
 	render() {
 		const { description, notes } = this.state;
 		return(
-			<StyledForm onSubmit = { this.handleSubmit }>
+			<StyledForm className = 'fade-in-anim' onSubmit = { this.handleSubmit }>
 				New Action Description:
 				<input
 					name = 'description'

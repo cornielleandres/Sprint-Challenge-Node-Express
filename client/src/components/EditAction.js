@@ -76,7 +76,7 @@ export default class EditAction extends Component {
 	render() {
 		const { description, notes, completed } = this.state.action;
 		return(
-			<StyledForm onSubmit = { this.handleSubmit }>
+			<StyledForm className = 'fade-in-anim' onSubmit = { this.handleSubmit }>
 				Updated Action Description:
 				<input
 					name = 'description'

@@ -17,7 +17,7 @@ const ProjectsListDiv = styled.div`
 const ProjectsList = props => {
 	const { projects, goToProject, goToEditProject, goToDeleteProject } = props;
 	return(
-		<ProjectsListDiv>
+		<ProjectsListDiv className = 'fade-in-anim'>
 			{ projects.map((project, i) => <Project key = { i } goToDeleteProject = { goToDeleteProject } goToEditProject = { goToEditProject } goToProject = { goToProject } project = { project } />) }
 		</ProjectsListDiv>
 	);

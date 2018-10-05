@@ -75,7 +75,7 @@ export default class EditProject extends Component {
 	render() {
 		const { name, description, completed } = this.state.project;
 		return(
-			<StyledForm onSubmit = { this.handleSubmit }>
+			<StyledForm className = 'fade-in-anim' onSubmit = { this.handleSubmit }>
 				Updated Project Name:
 				<input
 					name = 'name'

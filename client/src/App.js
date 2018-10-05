@@ -112,7 +112,7 @@ class App extends Component {
 	render() {
 		const { projects } = this.state;
 		return (
-			<AppDiv>
+			<AppDiv className = 'fade-in-anim'>
 				<header>
 					<h1>Projects and Actions</h1>
 

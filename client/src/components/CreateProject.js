@@ -59,7 +59,7 @@ export default class CreateProject extends Component {
 	render() {
 		const { name, description } = this.state;
 		return(
-			<StyledForm onSubmit = { this.handleSubmit }>
+			<StyledForm className = 'fade-in-anim' onSubmit = { this.handleSubmit }>
 				New Project Name:
 				<input
 					name = 'name'

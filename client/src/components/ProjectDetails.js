@@ -51,7 +51,7 @@ export default class ProjectDetails extends Component {
 		const { project } = this.state;
 		const { goToAction, goToCreateAction } = this.props;
 		return(
-			<ProjectDetailsDiv>
+			<ProjectDetailsDiv className = 'fade-in-anim'>
 				<p>ID: { project.id }</p>
 				<p>Name: { project.name }</p>
 				<p>Description: { project.description }</p>

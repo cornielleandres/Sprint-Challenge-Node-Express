@@ -64,7 +64,7 @@ export default class ActionDetails extends Component {
 		const { id, project_id, description, notes, completed } = this.state.action;
 		const { goToEditAction, goToDeleteAction } = this.props;
 		return(
-			<ActionDiv>
+			<ActionDiv className = 'fade-in-anim'>
 				<p>ID: { id }</p>
 				<p>Project ID: { project_id }</p>
 				<p>Description: { description }</p>

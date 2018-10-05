@@ -48,7 +48,7 @@ const ProjectDiv = styled.div`
 const Project = props => {
 	const { project, goToProject, goToEditProject, goToDeleteProject } = props;
 	return(
-		<ProjectDiv onClick = { () => goToProject(project.id) }>
+		<ProjectDiv className = 'grow-anim' onClick = { () => goToProject(project.id) }>
 			<div className = 'buttons'>
 				<button className = 'edit-btn' onClick = { e => goToEditProject(e, project.id) }>Edit Project</button>
 				<button className = 'delete-btn' onClick = { e => goToDeleteProject(e, project.id) }>Delete Project</button>
